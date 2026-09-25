@@ -1,0 +1,4 @@
+# Herramientas opcionales para automatizar y validar documentos académicos
+PyYAML>=6.0
+bibtexparser>=1.4.1
+pylatexenc>=2.10

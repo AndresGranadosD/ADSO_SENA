@@ -1,0 +1,77 @@
+\documentclass[12pt,letterpaper]{article}
+
+% Plantilla académica SENA.
+% Compilar con LaTeX Workshop o: latexmk -pdf plantilla_trabajo.tex
+% Requiere biber y el paquete biblatex-apa.
+
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[style=apa,backend=biber]{biblatex}
+
+% ==================== DATOS CONFIGURABLES ====================
+\newcommand{\institucion}{Servicio Nacional de Aprendizaje -- SENA}
+\newcommand{\programa}{[Nombre del programa de formación]}
+\newcommand{\tituloTrabajo}{[Título de la actividad]}
+\newcommand{\codigoEvidencia}{[Código de la evidencia]}
+\newcommand{\aprendiz}{Kevin Andres Granados Daza}
+\newcommand{\instructor}{[Nombre del instructor(a)]}
+\newcommand{\ficha}{[Número de ficha]}
+\newcommand{\centro}{[Nombre del centro de formación]}
+\newcommand{\ciudad}{Bogotá D. C.}
+\newcommand{\fechaEntrega}{[Fecha de entrega]}
+% =============================================================
+
+\geometry{top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm}
+\onehalfspacing
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{0pt}
+\addbibresource{referencias.bib}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\titleformat{\section}{\normalfont\bfseries\centering}{\thesection.}{0.5em}{}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2.5cm}
+  {\Large \tituloTrabajo\par}
+  \vfill
+  {\large \aprendiz\par}
+  \vspace{1.5cm}
+  {\large \institucion\par}
+  {\large \programa\par}
+  \vspace{1cm}
+  {\large Evidencia: \codigoEvidencia\par}
+  \vspace{1cm}
+  {\large Instructor(a): \instructor\par}
+  {\large Ficha: \ficha\par}
+  {\large Centro de formación: \centro\par}
+  \vfill
+  {\large \ciudad\par}
+  {\large \fechaEntrega\par}
+\end{titlepage}
+
+\section{Introducción}
+Escriba el propósito del documento, el contexto de la actividad y los temas que se desarrollarán.
+
+\section{Desarrollo}
+Desarrolle la actividad según la guía. Para una cita narrativa use \textcite{ejemploLibro}; para una cita parentética use \parencite{ejemploLibro}.
+
+\section{Conclusiones}
+Redacte conclusiones propias que sinteticen los aprendizajes, resultados y aportes del trabajo.
+
+\printbibliography[title={Referencias}]
+
+\end{document}
