@@ -1,0 +1,320 @@
+\documentclass[12pt,letterpaper]{article}
+
+% Evidencia: GA4-220501095-AA2-EV01
+% Compilar con LaTeX Workshop o: latexmk -pdf GA4-220501095-AA2-EV01.tex
+
+\usepackage[spanish,es-nodecimaldot,shorthands=off]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[style=apa,backend=biber]{biblatex}
+
+% ==================== DATOS CONFIGURABLES ====================
+\newcommand{\institucion}{Servicio Nacional de Aprendizaje -- SENA}
+\newcommand{\programa}{[ADSO]}
+\newcommand{\tituloTrabajo}{Taller de conceptos y principios de programacion orientada a objetos}
+\newcommand{\codigoEvidencia}{GA4-220501095-AA2-EV01}
+\newcommand{\aprendiz}{Kevin Andres Granados Daza}
+\newcommand{\instructor}{[Jesus Ramirez]}
+\newcommand{\ficha}{[3389015]}
+\newcommand{\ciudad}{Bogota D. C.}
+\newcommand{\fechaEntrega}{25 de septiembre de 2026}
+% ==============================================================
+
+\geometry{top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm}
+\onehalfspacing
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{0pt}
+\setlength{\headheight}{15pt}
+\addbibresource{referencias.bib}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\codigoEvidencia}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\titleformat{\section}{\normalfont\Large\bfseries\centering}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
+
+\definecolor{fondoCodigo}{RGB}{245,245,245}
+\definecolor{azulCodigo}{RGB}{0,70,140}
+\lstset{
+    backgroundcolor=\color{fondoCodigo},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    keywordstyle=\color{azulCodigo}\bfseries,
+    showstringspaces=false,
+    tabsize=4,
+    xleftmargin=0.5cm,
+    xrightmargin=0.5cm
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2.5cm}
+    {\Large \tituloTrabajo\par}
+    \vfill
+    {\large \aprendiz\par}
+    \vspace{1.5cm}
+    {\large \institucion\par}
+    {\large \programa\par}
+    \vspace{1cm}
+    {\large Evidencia: \codigoEvidencia\par}
+    \vspace{1cm}
+    {\large Instructor(a): \instructor\par}
+    {\large Ficha: \ficha\par}
+    \vfill
+    {\large \ciudad\par}
+    {\large \fechaEntrega\par}
+\end{titlepage}
+
+\section{Introduccion}
+
+La programacion orientada a objetos, tambien conocida como POO, es un paradigma de programacion que permite organizar un sistema informatico a partir de objetos. Un objeto representa una entidad que posee caracteristicas, llamadas atributos, y acciones, llamadas metodos. Por ejemplo, en un sistema de matricula del SENA se pueden representar aprendices, cursos, instructores y evidencias como objetos dentro del programa.
+
+Este enfoque permite que los programas se parezcan mas a la realidad que se desea modelar. En lugar de trabajar unicamente con variables y funciones separadas, la POO reune los datos y las operaciones relacionadas en una misma estructura. Por esta razon, facilita la organizacion, el mantenimiento, la reutilizacion y la ampliacion del codigo cuando el sistema crece \parencite{ibmOOP,unamPOO}.
+
+El presente taller desarrolla un glosario de terminos esenciales de la programacion orientada a objetos y explica sus principales caracteristicas y pilares: abstraccion, encapsulamiento, herencia y polimorfismo. Para facilitar la comprension, se utilizan ejemplos aplicados al contexto de un sistema academico.
+
+\section{Glosario de terminologia de la POO}
+
+\renewcommand{\arraystretch}{1.35}
+\begin{longtable}{|p{3cm}|p{7cm}|p{4cm}|}
+\hline
+\textbf{Termino} & \textbf{Explicacion en palabras propias} & \textbf{Ejemplo aplicado} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Termino} & \textbf{Explicacion en palabras propias} & \textbf{Ejemplo aplicado} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+Programacion Orientada a Objetos (POO) & Es una forma de programar que organiza un sistema mediante objetos. Cada objeto reune datos sobre algo y las acciones que ese algo puede realizar. & En una plataforma academica, un aprendiz puede tener nombre, documento y programa de formacion, ademas de acciones como inscribirse o consultar notas. \\
+\hline
+Clase & Es un modelo, plano o plantilla que define como seran determinados objetos. En ella se establecen las caracteristicas y comportamientos comunes que tendran sus objetos. & La clase \texttt{Aprendiz} define que todo aprendiz tendra nombre, correo, documento y metodos para estudiar o entregar evidencias. \\
+\hline
+Objeto & Es un elemento concreto creado a partir de una clase. Es decir, es una instancia que contiene valores propios para sus atributos y puede ejecutar metodos. & Kevin es un objeto de la clase \texttt{Aprendiz}; tiene su propio nombre, documento y correo. \\
+\hline
+Instancia & Es el resultado de crear un objeto usando una clase como base. Cada instancia puede tener informacion diferente, aunque pertenezca a la misma clase. & Si se crean los objetos Kevin, Laura y Carlos desde la clase \texttt{Aprendiz}, cada uno es una instancia distinta. \\
+\hline
+Atributo & Es una caracteristica o dato que describe a un objeto. Los atributos permiten conocer el estado de un objeto en un momento determinado. & Un aprendiz puede tener como atributos nombre, edad, numero de documento, correo y estado de matricula. \\
+\hline
+Metodo & Es una accion o comportamiento que puede realizar un objeto. Los metodos permiten modificar datos, consultar informacion o ejecutar una tarea determinada. & El metodo \texttt{entregarEvidencia()} registra que un aprendiz entrego una actividad en la plataforma. \\
+\hline
+Evento & Es un suceso que ocurre dentro de un programa y que puede generar una respuesta. Puede originarse por una persona, por otro objeto o por el propio sistema. & Cuando el usuario hace clic en el boton ``Enviar evidencia'', se produce un evento y el sistema guarda el archivo. \\
+\hline
+Estado & Es el conjunto de valores que tienen los atributos de un objeto en un momento especifico. Si cambia un atributo, cambia el estado del objeto. & Si un aprendiz pasa de ``pendiente'' a ``aprobado'' en una evidencia, cambia el estado de esa evidencia. \\
+\hline
+Mensaje & Es una solicitud que un objeto envia a otro para que ejecute una accion o metodo. Es una manera de comunicar objetos dentro de un sistema. & El objeto \texttt{SistemaMatricula} puede enviar el mensaje \texttt{registrarCurso()} al objeto \texttt{Aprendiz}. \\
+\hline
+Constructor & Es un metodo especial que se utiliza cuando se crea un objeto. Su funcion principal es darle valores iniciales a los atributos necesarios. & Al crear un aprendiz, el constructor puede recibir su nombre, documento y correo para dejarlo registrado desde el inicio. \\
+\hline
+Abstraccion & Es el proceso de identificar solo las caracteristicas importantes de algo y dejar de lado detalles que no son necesarios para resolver el problema. & Para registrar un aprendiz, importa su nombre, documento y correo; no necesariamente importa su color favorito. \\
+\hline
+Encapsulamiento & Es el principio de proteger los datos internos de un objeto y controlar como se consultan o modifican. Asi se evita que cualquier parte del programa cambie informacion importante sin validacion. & El atributo \texttt{notaFinal} no deberia modificarse directamente; se puede cambiar mediante un metodo que valide que la nota este entre 0 y 5. \\
+\hline
+Herencia & Es la capacidad de crear una clase nueva a partir de otra clase ya existente. La nueva clase recibe atributos y metodos de la clase original y puede agregar caracteristicas propias. & La clase \texttt{Instructor} y la clase \texttt{Aprendiz} pueden heredar de una clase general llamada \texttt{Persona}. \\
+\hline
+Superclase & Es la clase mas general de una relacion de herencia. Contiene caracteristicas comunes que otras clases pueden reutilizar. & \texttt{Persona} puede ser la superclase de \texttt{Aprendiz} e \texttt{Instructor}. \\
+\hline
+Subclase & Es una clase especializada que hereda elementos de una superclase y agrega o modifica comportamientos segun sus necesidades. & \texttt{Aprendiz} es una subclase de \texttt{Persona}, pero ademas incluye atributos como programa de formacion y ficha. \\
+\hline
+Polimorfismo & Es la capacidad de usar una misma accion o metodo con comportamientos diferentes segun el tipo de objeto que lo ejecute. & El metodo \texttt{mostrarInformacion()} puede funcionar de una forma para un aprendiz y de otra para un instructor. \\
+\hline
+Reutilizacion de codigo & Es la posibilidad de aprovechar codigo que ya fue creado, en vez de escribirlo nuevamente desde cero. & Al heredar de la clase \texttt{Persona}, no es necesario volver a programar nombre, documento y correo para cada tipo de usuario. \\
+\hline
+Asociacion & Es una relacion entre dos o mas clases que necesitan colaborar dentro de un sistema. & Un \texttt{Aprendiz} se relaciona con un \texttt{Curso}, porque puede estar inscrito en uno o varios cursos. \\
+\hline
+Modularidad & Es la organizacion de un programa en partes independientes y relacionadas. Cada clase cumple una responsabilidad especifica. & Una clase \texttt{Aprendiz} maneja datos de aprendices, mientras que una clase \texttt{Evidencia} administra las entregas de actividades. \\
+\hline
+\end{longtable}
+
+\section{Caracteristicas de la programacion orientada a objetos}
+
+La programacion orientada a objetos tiene varias caracteristicas que la hacen util para desarrollar aplicaciones ordenadas y escalables:
+
+\begin{itemize}[leftmargin=1.2cm]
+    \item Modela elementos de la realidad mediante clases y objetos. Por ejemplo, una biblioteca puede representar libros, usuarios, prestamos y multas.
+    \item Agrupa datos y comportamientos relacionados. Un objeto no solo almacena informacion; tambien contiene metodos para trabajar con esa informacion.
+    \item Favorece la reutilizacion del codigo. Cuando varias clases comparten elementos, se puede utilizar herencia para evitar repetir atributos y metodos.
+    \item Facilita el mantenimiento del software. Si cada clase tiene una responsabilidad clara, resulta mas sencillo encontrar, corregir o mejorar una parte del sistema.
+    \item Mejora la seguridad de los datos mediante el encapsulamiento. Los atributos sensibles se protegen y solo se modifican por medio de metodos controlados.
+    \item Permite ampliar programas sin cambiar todo el codigo existente. Se pueden crear nuevas clases o extender las ya creadas sin afectar necesariamente el resto del sistema.
+    \item Permite comportamientos flexibles mediante polimorfismo. Un mismo metodo puede adaptarse al tipo de objeto que lo utilice \parencite{unamPOO,microsoftOOP}.
+\end{itemize}
+
+\section{Principios o pilares basicos de la POO}
+
+Los cuatro pilares fundamentales de la POO son la abstraccion, el encapsulamiento, la herencia y el polimorfismo. Estos principios permiten que el codigo sea mas comprensible, seguro, reutilizable y adaptable \parencite{scieloPOO,unamPOO}.
+
+\subsection{Abstraccion}
+
+La abstraccion consiste en representar un elemento real teniendo en cuenta unicamente la informacion necesaria para el problema que se quiere resolver. En otras palabras, se seleccionan las caracteristicas importantes y se ignoran los detalles que no aportan a la solucion.
+
+Por ejemplo, si se crea un sistema para registrar aprendices del SENA, se puede representar a cada aprendiz con datos como nombre, documento, correo, programa de formacion y ficha. No seria necesario almacenar todos los datos posibles de la persona, sino solo aquellos que el sistema requiere.
+
+La abstraccion ayuda a simplificar problemas complejos. Gracias a este principio, el programador puede concentrarse en lo importante y disenar clases claras, con una funcion definida.
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}
+Clase Aprendiz
+    Atributos:
+        nombre
+        documento
+        correo
+        programaFormacion
+
+    Metodos:
+        inscribirseCurso()
+        entregarEvidencia()
+        consultarNotas()
+FinClase
+\end{lstlisting}
+
+En este ejemplo, la clase \texttt{Aprendiz} representa las caracteristicas esenciales de un estudiante dentro de una plataforma academica.
+
+\subsection{Encapsulamiento}
+
+El encapsulamiento consiste en agrupar los atributos y metodos de un objeto dentro de una misma clase, ademas de controlar el acceso a su informacion. Este principio evita que los datos sean modificados de manera incorrecta desde cualquier parte del programa.
+
+Por ejemplo, una nota no deberia poder asignarse con un valor negativo o superior a 5.0. Por eso, en lugar de permitir que el atributo \texttt{notaFinal} sea alterado directamente, se crea un metodo que revise si el valor ingresado es valido.
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}
+Clase Evidencia
+    Privado:
+        notaFinal
+
+    Publico:
+        Metodo asignarNota(nota)
+            Si nota >= 0 Y nota <= 5 Entonces
+                notaFinal <- nota
+            SiNo
+                Escribir "La nota debe estar entre 0 y 5."
+            FinSi
+        FinMetodo
+
+        Metodo consultarNota()
+            Retornar notaFinal
+        FinMetodo
+FinClase
+\end{lstlisting}
+
+En este caso, la nota esta protegida. El programa solo puede modificarla usando el metodo \texttt{asignarNota()}, que aplica una validacion antes de guardar el valor. Esto protege la integridad de los datos \parencite{microsoftOOP}.
+
+\subsection{Herencia}
+
+La herencia permite crear clases nuevas a partir de otras clases existentes. La clase nueva recibe los atributos y metodos de la clase original, pero tambien puede agregar elementos propios o modificar algunos comportamientos.
+
+Este principio es util cuando existen varios tipos de objetos que comparten caracteristicas. Por ejemplo, tanto un aprendiz como un instructor son personas. Ambos pueden tener nombre, documento, correo y telefono. Sin embargo, cada uno cumple funciones diferentes dentro de un sistema academico.
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}
+Clase Persona
+    Atributos:
+        nombre
+        documento
+        correo
+
+    Metodos:
+        iniciarSesion()
+        actualizarDatos()
+FinClase
+
+Clase Aprendiz Hereda De Persona
+    Atributos:
+        programaFormacion
+        ficha
+
+    Metodos:
+        entregarEvidencia()
+        consultarNotas()
+FinClase
+
+Clase Instructor Hereda De Persona
+    Atributos:
+        especialidad
+
+    Metodos:
+        calificarEvidencia()
+        publicarMaterial()
+FinClase
+\end{lstlisting}
+
+En este ejemplo, \texttt{Aprendiz} e \texttt{Instructor} heredan los datos y comportamientos generales de \texttt{Persona}. Asi, se evita repetir codigo y se mantiene una estructura organizada \parencite{microsoftOOP}.
+
+\subsection{Polimorfismo}
+
+El polimorfismo permite que una misma operacion tenga diferentes comportamientos dependiendo del objeto que la ejecute. Aunque varias clases utilicen un metodo con el mismo nombre, cada clase puede implementar ese metodo de acuerdo con sus necesidades.
+
+Por ejemplo, todos los usuarios de una plataforma pueden ejecutar el metodo \texttt{mostrarPanel()}. Sin embargo, un aprendiz vera sus cursos, evidencias y notas, mientras que un instructor vera los aprendices, actividades y opciones de calificacion.
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}
+Clase Persona
+    Metodo mostrarPanel()
+        Escribir "Panel general del usuario."
+    FinMetodo
+FinClase
+
+Clase Aprendiz Hereda De Persona
+    Metodo mostrarPanel()
+        Escribir "Panel del aprendiz: cursos, evidencias y notas."
+    FinMetodo
+FinClase
+
+Clase Instructor Hereda De Persona
+    Metodo mostrarPanel()
+        Escribir "Panel del instructor: grupos, evidencias y calificaciones."
+    FinMetodo
+FinClase
+\end{lstlisting}
+
+Aunque el metodo se llama \texttt{mostrarPanel()} en las tres clases, cada objeto responde de manera diferente. Esto hace que el programa sea mas flexible y permite trabajar con distintos tipos de objetos usando una misma idea general \parencite{microsoftOOP}.
+
+\section{Relacion entre los conceptos de la POO}
+
+Los elementos de la POO trabajan de manera conjunta. Primero se utiliza la abstraccion para identificar las entidades importantes de un problema. Luego se crean las clases que representan esas entidades. A partir de las clases se construyen objetos, los cuales poseen atributos y metodos.
+
+Despues, el encapsulamiento protege los datos de cada objeto. La herencia permite reutilizar caracteristicas comunes entre clases relacionadas y el polimorfismo logra que una misma accion pueda responder de diferentes formas segun el objeto involucrado.
+
+Por ejemplo, en una plataforma educativa se puede disenar una clase \texttt{Persona} como elemento general. A partir de ella se crean las clases \texttt{Aprendiz} e \texttt{Instructor}. Ambas comparten informacion basica por medio de la herencia, protegen sus datos utilizando encapsulamiento y presentan interfaces o acciones distintas mediante polimorfismo.
+
+\section{Conclusiones}
+
+La programacion orientada a objetos es una metodologia importante en el desarrollo de software porque permite representar problemas del mundo real mediante clases y objetos. Cada objeto tiene atributos que describen su estado y metodos que definen las acciones que puede realizar.
+
+Los conceptos de clase, objeto, atributo, metodo y evento son fundamentales para comprender como se estructura un programa orientado a objetos. Una clase actua como una plantilla, mientras que los objetos son elementos concretos creados a partir de ella.
+
+Los pilares de la POO complementan esta estructura. La abstraccion permite identificar la informacion esencial; el encapsulamiento protege los datos; la herencia facilita reutilizar codigo; y el polimorfismo permite adaptar los comportamientos de los objetos segun el contexto.
+
+En conclusion, aplicar correctamente la POO permite construir programas mas organizados, faciles de mantener, seguros y escalables. Estos principios son especialmente utiles en sistemas grandes, como plataformas educativas, aplicaciones bancarias, tiendas virtuales y sistemas de gestion empresarial.
+
+\printbibliography[title={Referencias}]
+
+\end{document}

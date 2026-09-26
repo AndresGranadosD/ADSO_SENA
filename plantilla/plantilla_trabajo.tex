@@ -4,7 +4,7 @@
 % Compilar con LaTeX Workshop o: latexmk -pdf plantilla_trabajo.tex
 % Requiere biber y el paquete biblatex-apa.
 
-\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[spanish,es-nodecimaldot,shorthands=off]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -34,7 +34,7 @@
 \setlength{\parindent}{1.27cm}
 \setlength{\parskip}{0pt}
 \addbibresource{referencias.bib}
-
+\setlength{\headheight}{15pt}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[R]{\thepage}

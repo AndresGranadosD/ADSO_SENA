@@ -1,0 +1,346 @@
+\documentclass[12pt,letterpaper]{article}
+
+% Evidencia: GA4-220501095-AA2-EV06
+% Compilar con LaTeX Workshop o: latexmk -pdf GA4-220501095-AA2-EV06.tex
+% El contenido usa caracteres ASCII para evitar problemas de codificacion.
+
+\usepackage[spanish,es-nodecimaldot,shorthands=off]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% ==================== DATOS CONFIGURABLES ====================
+\newcommand{\institucion}{Servicio Nacional de Aprendizaje -- SENA}
+\newcommand{\programa}{Analisis y Desarrollo de Software}
+\newcommand{\tituloTrabajo}{Taller: Arquitectura de software}
+\newcommand{\codigoEvidencia}{GA4-220501095-AA2-EV06}
+\newcommand{\nombreProyecto}{Sistema de Gestion de Citas SAC}
+\newcommand{\aprendiz}{Kevin Andres Granados Daza}
+\newcommand{\instructor}{[Jesus Ramirez]}
+\newcommand{\ficha}{[3389015]}
+\newcommand{\ciudad}{Bogota D. C.}
+\newcommand{\fechaEntrega}{[25 de septiembre de 2026]}
+% ==============================================================
+
+\geometry{top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm}
+\onehalfspacing
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{0pt}
+\setlength{\headheight}{15pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\codigoEvidencia}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\titleformat{\section}{\normalfont\Large\bfseries\centering}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2.5cm}
+    {\Large \tituloTrabajo\par}
+    \vspace{0.8cm}
+    {\large Aplicacion al proyecto: \nombreProyecto\par}
+    \vfill
+    {\large \aprendiz\par}
+    \vspace{1.5cm}
+    {\large \institucion\par}
+    {\large \programa\par}
+    \vspace{1cm}
+    {\large Evidencia: \codigoEvidencia\par}
+    \vspace{1cm}
+    {\large Instructor: \instructor\par}
+    {\large Ficha: \ficha\par}
+    \vfill
+    {\large \ciudad\par}
+    {\large \fechaEntrega\par}
+\end{titlepage}
+
+\section{Introduccion}
+
+La arquitectura de software es un elemento fundamental en el desarrollo de una aplicacion, ya que define la organizacion general de sus componentes y orienta las decisiones tecnicas necesarias para construir una solucion funcional. Antes de escribir el codigo, es necesario establecer como se separaran las responsabilidades, como se almacenara la informacion, como se comunicaran los modulos y que condiciones de calidad debe cumplir el sistema.
+
+Una arquitectura no se limita a realizar un diagrama o seleccionar una tecnologia. Tambien incluye las decisiones que permiten que el software sea mantenible, seguro, escalable y comprensible. Por esta razon, una buena arquitectura funciona como una guia para el equipo de desarrollo y como un medio de comunicacion con las personas interesadas en el proyecto.
+
+El presente taller responde las preguntas principales relacionadas con arquitectura de software: que se entiende por este concepto, cual es su funcion, como se elabora, como se puede lograr una buena arquitectura y cuales son sus elementos de diseno. Para facilitar la comprension, se utilizan ejemplos aplicados al proyecto \nombreProyecto.
+
+\section{Que entiendo por arquitectura de software}
+
+En mi concepto, la arquitectura de software es el plano general de una aplicacion. Asi como una construccion necesita una estructura que indique donde estaran sus espacios, como se conectaran y que materiales se utilizaran, un sistema de software necesita una organizacion que defina sus partes principales y la forma en que trabajan juntas.
+
+La arquitectura define decisiones de alto nivel. Entre estas decisiones se encuentran la separacion entre frontend y backend, la forma de almacenar los datos, el tipo de comunicacion entre componentes, los patrones de diseno que se aplicaran, las medidas de seguridad y la infraestructura donde se ejecutara el sistema. Estas decisiones influyen directamente en la calidad y facilidad de mantenimiento del producto final.
+
+En el caso del Sistema de Gestion de Citas SAC, la arquitectura permite establecer que los usuarios acceden por medio de una aplicacion web, que las solicitudes se procesan mediante una API REST, que las reglas del negocio se concentran en servicios y que la informacion se almacena en una base de datos relacional. Esta organizacion evita que todos los elementos se mezclen en un unico bloque de codigo dificil de modificar.
+
+Por lo tanto, la arquitectura de software no es solamente un dibujo tecnico. Es un conjunto de decisiones coherentes que define como se estructura, se comunica, evoluciona y mantiene un sistema a lo largo de su ciclo de vida.
+
+\section{Cual es la funcion de la arquitectura de software}
+
+La funcion principal de la arquitectura de software es proporcionar una estructura clara para construir y mantener una aplicacion. Su proposito es organizar los componentes del sistema, definir sus responsabilidades y establecer las reglas de comunicacion entre ellos.
+
+Una arquitectura bien definida cumple varias funciones dentro de un proyecto:
+
+\begin{itemize}[leftmargin=1.2cm]
+    \item Organiza el sistema en componentes o capas con responsabilidades especificas.
+    \item Permite que el equipo comprenda como funciona la aplicacion antes de implementar todos los detalles.
+    \item Reduce riesgos tecnicos al identificar desde el inicio requisitos de seguridad, rendimiento, disponibilidad y escalabilidad.
+    \item Facilita el mantenimiento, porque los cambios pueden realizarse en un componente sin afectar innecesariamente los demas.
+    \item Ayuda a reutilizar soluciones y patrones de diseno que ya han demostrado ser utiles en problemas similares.
+    \item Sirve como base para elaborar diagramas, documentacion, pruebas, manuales y planes de despliegue.
+    \item Facilita la comunicacion entre cliente, analista, desarrollador, tester y personal encargado de la infraestructura.
+\end{itemize}
+
+En el Sistema de Gestion de Citas SAC, la arquitectura permite separar la interfaz que utilizan los usuarios de la logica que valida horarios y de las operaciones que almacenan datos. Por ejemplo, cuando una persona agenda una cita, el formulario web no debe conectarse directamente a la base de datos. La solicitud debe pasar por la API, un controlador y un servicio que valide la disponibilidad del horario antes de guardar la informacion.
+
+\begin{longtable}{|p{4cm}|p{10.5cm}|}
+\hline
+\textbf{Funcion} & \textbf{Ejemplo aplicado al Sistema de Gestion de Citas SAC} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Funcion} & \textbf{Ejemplo aplicado al Sistema de Gestion de Citas SAC} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+Separar responsabilidades & El frontend muestra formularios; la API recibe solicitudes; los servicios aplican reglas; los repositorios consultan la base de datos. \\
+\hline
+
+Garantizar seguridad & La autenticacion valida credenciales y los roles determinan si una persona puede gestionar horarios o confirmar citas. \\
+\hline
+
+Facilitar mantenimiento & Una modificacion en la interfaz de agenda no obliga a cambiar las consultas de base de datos ni la validacion de disponibilidad. \\
+\hline
+
+Permitir crecimiento & Se puede agregar un modulo de reportes o recordatorios sin reconstruir toda la aplicacion. \\
+\hline
+
+Mejorar trazabilidad & Los cambios de estado de una cita se registran en un historial y pueden generar notificaciones. \\
+\hline
+
+Apoyar pruebas & Los servicios de citas y horarios pueden probarse de forma independiente antes de integrar toda la aplicacion. \\
+\hline
+\end{longtable}
+
+\section{Como se elabora la arquitectura de software}
+
+La elaboracion de una arquitectura de software es un proceso de analisis y toma de decisiones. No existe una unica arquitectura correcta para todos los sistemas, porque cada proyecto tiene necesidades, restricciones, usuarios y condiciones tecnicas diferentes. Sin embargo, se pueden seguir una serie de pasos para construir una propuesta adecuada.
+
+\subsection{Identificar interesados y necesidades}
+
+El primer paso consiste en identificar quienes participan o se ven afectados por el sistema. Estos interesados pueden ser clientes, usuarios finales, administradores, desarrolladores, personal de pruebas y responsables de infraestructura. Cada grupo tiene preocupaciones diferentes.
+
+En el Sistema de Gestion de Citas SAC, los usuarios esperan una interfaz sencilla para solicitar citas. Los administradores necesitan gestionar horarios y solicitudes. El cliente requiere trazabilidad y control de la informacion. El equipo tecnico necesita una estructura mantenible y segura.
+
+\subsection{Analizar requisitos funcionales y no funcionales}
+
+Los requisitos funcionales indican que debe hacer el sistema. Los requisitos no funcionales establecen condiciones de calidad, como seguridad, rendimiento, disponibilidad, usabilidad y escalabilidad.
+
+Por ejemplo, agendar una cita es un requisito funcional. En cambio, permitir que la aplicacion sea accesible desde un dispositivo movil, proteger las credenciales y responder en un tiempo adecuado son requisitos no funcionales que influyen directamente en las decisiones arquitectonicas.
+
+\subsection{Definir restricciones y tecnologias}
+
+En esta etapa se identifican limites del proyecto, recursos disponibles, conocimientos del equipo, presupuesto, tiempo de entrega y tecnologias permitidas. Estas condiciones ayudan a seleccionar herramientas realistas.
+
+Para el SAC se plantea una aplicacion web responsiva con HTML, CSS y JavaScript en el frontend; Python con un framework web para el backend; PostgreSQL o MySQL para la base de datos; Git y GitHub para el control de versiones; y un servidor virtual o servicio en la nube para el despliegue.
+
+\subsection{Seleccionar estilos y patrones}
+
+Luego se selecciona el estilo arquitectonico y los patrones de diseno que mejor se adaptan al problema. Para el SAC se propone una arquitectura web por capas basada en MVC. Tambien se utilizan Service Layer para centralizar reglas de negocio, Repository para encapsular el acceso a datos, DTO para transportar datos controlados y Observer para reaccionar ante cambios de estado de una cita.
+
+\subsection{Definir componentes e interfaces}
+
+Cada componente debe tener una responsabilidad concreta y una forma clara de comunicarse con los demas. Por ejemplo, el frontend se comunica con la API mediante HTTPS y JSON. La API utiliza controladores y servicios. Los servicios acceden a los repositorios, y los repositorios se conectan a la base de datos mediante SQL u ORM.
+
+\subsection{Representar vistas arquitectonicas}
+
+La arquitectura se documenta mediante vistas que muestran diferentes aspectos del sistema. Una vista de componentes presenta los modulos de software y sus dependencias. Una vista de despliegue muestra donde se ejecuta cada componente. Tambien pueden utilizarse vistas de datos, seguridad, procesos o casos de uso.
+
+\subsection{Validar y ajustar}
+
+Finalmente, la arquitectura debe revisarse con los interesados y evaluarse frente a los requisitos definidos. Si una decision no satisface las necesidades de seguridad, mantenimiento o rendimiento, debe ajustarse antes de que el costo de cambio sea mayor.
+
+\begin{enumerate}[leftmargin=1.2cm]
+    \item Identificar interesados, objetivos y preocupaciones.
+    \item Levantar y priorizar requisitos funcionales y no funcionales.
+    \item Identificar restricciones de tiempo, presupuesto, equipo y tecnologia.
+    \item Seleccionar estilo arquitectonico y patrones de diseno.
+    \item Definir componentes, capas, interfaces y responsabilidades.
+    \item Diseñar la persistencia de datos y las integraciones externas.
+    \item Documentar vistas de componentes, despliegue, datos y seguridad.
+    \item Validar la propuesta y ajustar las decisiones necesarias.
+\end{enumerate}
+
+\section{Como lograr una buena arquitectura de software}
+
+Una buena arquitectura no depende solamente de utilizar tecnologias modernas. Se logra al tomar decisiones que respondan a las necesidades reales del proyecto y al mantener una estructura que pueda evolucionar con el tiempo.
+
+\subsection{Separar responsabilidades}
+
+Cada componente debe concentrarse en una tarea especifica. La interfaz debe mostrar informacion y capturar datos; los controladores deben dirigir solicitudes; los servicios deben aplicar reglas de negocio; y los repositorios deben manejar la persistencia. Esta separacion permite realizar cambios con menor riesgo.
+
+\subsection{Buscar bajo acoplamiento y alta cohesion}
+
+El bajo acoplamiento significa que los componentes no dependan excesivamente unos de otros. La alta cohesion significa que las responsabilidades dentro de un mismo componente esten relacionadas. Por ejemplo, ServicioCita debe concentrar reglas de citas, no operaciones de autenticacion o configuracion de correo.
+
+\subsection{Proteger la seguridad desde el diseno}
+
+La seguridad debe considerarse desde las primeras etapas. Es necesario definir autenticacion, control de acceso por roles, validacion de datos, proteccion de contrasenas, uso de conexiones seguras y control de operaciones sensibles.
+
+En el SAC, solamente un administrador debe poder crear o modificar horarios. Tambien se debe validar que una cita no pueda registrarse en un horario ocupado y que las credenciales de usuario no se almacenen como texto plano.
+
+\subsection{Considerar atributos de calidad}
+
+Una arquitectura debe responder a atributos de calidad que sean relevantes para el sistema. Entre los mas importantes se encuentran:
+
+\begin{longtable}{|p{3.5cm}|p{5cm}|p{6.1cm}|}
+\hline
+\textbf{Atributo de calidad} & \textbf{Significado} & \textbf{Aplicacion al SAC} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Atributo de calidad} & \textbf{Significado} & \textbf{Aplicacion al SAC} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+Mantenibilidad & Facilidad para corregir, adaptar o ampliar el sistema. & La separacion por capas permite modificar el frontend o los repositorios sin alterar toda la aplicacion. \\
+\hline
+
+Seguridad & Proteccion de datos, operaciones y accesos. & Autenticacion, contrasenas cifradas, roles y uso de HTTPS. \\
+\hline
+
+Disponibilidad & Capacidad del sistema para estar accesible cuando se necesita. & Despliegue en un servidor estable, copias de seguridad y monitoreo basico. \\
+\hline
+
+Rendimiento & Capacidad para responder en tiempos adecuados. & Consultas optimizadas de horarios y validacion eficiente de disponibilidad. \\
+\hline
+
+Usabilidad & Facilidad de uso y comprension para los usuarios. & Formularios claros, mensajes comprensibles y diseno responsivo. \\
+\hline
+
+Escalabilidad & Capacidad para crecer sin perder funcionalidad. & Posibilidad de agregar reportes, recordatorios e integraciones externas mediante modulos. \\
+\hline
+
+Confiabilidad & Capacidad para operar de forma consistente. & Validaciones de citas, control de estados e historico de cambios. \\
+\hline
+\end{longtable}
+
+\subsection{Documentar decisiones}
+
+Una buena arquitectura debe documentar por que se tomaron ciertas decisiones. No es suficiente escribir que se utilizara una API REST o una base de datos relacional; tambien se debe explicar que estas decisiones permiten separar responsabilidades, proteger los datos y facilitar el crecimiento del sistema.
+
+La documentacion debe incluir diagramas, descripciones de componentes, tecnologias, interfaces, restricciones, reglas de negocio y estrategias de despliegue. Esto permite que nuevos integrantes comprendan el proyecto y puedan continuar el trabajo sin depender solamente del conocimiento de una persona.
+
+\subsection{Probar y mejorar continuamente}
+
+La arquitectura debe validarse mediante pruebas tecnicas y revisiones. Es recomendable probar los servicios de negocio, los endpoints de la API, las consultas a base de datos, la seguridad de acceso y los flujos principales de usuario. Tambien se deben revisar las incidencias encontradas para determinar si requieren cambios en el diseno.
+
+\section{Elementos de diseno de una arquitectura de software}
+
+Los elementos de diseno son las partes que permiten describir y construir la arquitectura de un sistema. Estos elementos no siempre aparecen de la misma manera en todos los proyectos, pero en conjunto permiten entender como se organiza una solucion.
+
+\begin{longtable}{|p{3.8cm}|p{4.8cm}|p{5.9cm}|}
+\hline
+\textbf{Elemento} & \textbf{Descripcion} & \textbf{Ejemplo en el Sistema de Gestion de Citas SAC} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Elemento} & \textbf{Descripcion} & \textbf{Ejemplo en el Sistema de Gestion de Citas SAC} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+Componentes & Modulos con responsabilidades definidas que forman parte del sistema. & Frontend Web, API REST, ServicioCita, ServicioHorario, RepositorioCita y ServicioNotificacion. \\
+\hline
+
+Interfaces & Contratos que permiten que los componentes se comuniquen. & Endpoints REST para crear citas, consultar horarios, iniciar sesion o actualizar estados. \\
+\hline
+
+Conectores & Mecanismos por los cuales se comunican los componentes. & HTTPS y JSON entre frontend y API; SQL entre repositorios y base de datos. \\
+\hline
+
+Capas & Agrupaciones de componentes segun su responsabilidad. & Presentacion, controladores, servicios, dominio, persistencia e infraestructura. \\
+\hline
+
+Modelos de dominio & Clases o entidades que representan elementos reales del problema. & Usuario, Administrador, Rol, Cita, Horario, HistorialCita y Notificacion. \\
+\hline
+
+Datos y persistencia & Estructura usada para conservar informacion de manera permanente. & Base de datos relacional con tablas para usuarios, roles, horarios, citas e historial. \\
+\hline
+
+Patrones de diseno & Soluciones reutilizables para problemas frecuentes de organizacion. & MVC, Service Layer, Repository, Factory Method, Observer y DTO. \\
+\hline
+
+Reglas de negocio & Condiciones que controlan el comportamiento valido del sistema. & No permitir dos citas activas en el mismo horario; solo administradores gestionan disponibilidad. \\
+\hline
+
+Vistas arquitectonicas & Representaciones que muestran diferentes perspectivas del sistema. & Vista de componentes y vista de despliegue elaboradas para el proyecto. \\
+\hline
+
+Infraestructura & Recursos fisicos o virtuales donde se ejecuta el sistema. & Navegador web, servidor de aplicacion, base de datos, Internet y servicio de correo. \\
+\hline
+
+Seguridad & Mecanismos para proteger datos, accesos y comunicaciones. & Autenticacion, autorizacion por roles, cifrado de contrasenas, HTTPS y validacion de entradas. \\
+\hline
+
+Restricciones & Limites tecnicos, economicos o de tiempo que condicionan el diseno. & Presupuesto, conocimientos del equipo, plazo de desarrollo y disponibilidad de servicios en la nube. \\
+\hline
+\end{longtable}
+
+\section{Aplicacion al Sistema de Gestion de Citas SAC}
+
+La arquitectura propuesta para el Sistema de Gestion de Citas SAC se basa en una aplicacion web por capas. Esta alternativa permite que los usuarios accedan desde un navegador sin instalar aplicaciones adicionales y facilita que el sistema pueda desplegarse en un servidor o servicio en la nube.
+
+La capa de presentacion contiene las paginas y formularios que utilizan Usuario y Administrador. La API REST recibe las solicitudes, valida el acceso y dirige las operaciones a los controladores. Los controladores delegan la logica a servicios especializados. Por ejemplo, ServicioCita verifica la disponibilidad, crea la solicitud, cambia el estado, registra el historial y genera notificaciones cuando es necesario.
+
+Los servicios utilizan repositorios para comunicarse con la base de datos. Esta estructura evita que la logica de negocio tenga que escribir consultas SQL directamente. La base de datos conserva los registros de usuarios, roles, horarios, citas, cambios de estado y notificaciones.
+
+La arquitectura tambien contempla un servicio externo de correo o mensajeria. Cuando una cita cambia de estado, el patron Observer permite informar al ServicioNotificacion. Este servicio puede utilizar Factory Method para crear un mensaje adecuado segun el evento: confirmacion, rechazo, cancelacion, reprogramacion o recordatorio.
+
+\begin{center}
+\fbox{\parbox{0.88\textwidth}{
+\centering
+\textbf{Resumen de la arquitectura del SAC}\\[0.3cm]
+Usuario o Administrador $\rightarrow$ Frontend Web $\rightarrow$ API REST $\rightarrow$ Controladores $\rightarrow$ Servicios de Negocio $\rightarrow$ Repositorios $\rightarrow$ Base de Datos\\[0.2cm]
+ServicioCita $\rightarrow$ ServicioNotificacion $\rightarrow$ Servicio de Correo
+}}
+\end{center}
+
+Esta organizacion permite que cada modulo tenga una responsabilidad definida y que el proyecto pueda crecer de manera controlada. Si en el futuro se requiere agregar reportes, pagos, recordatorios automaticos o integraciones con otros sistemas, estas funcionalidades pueden incorporarse mediante nuevos servicios o componentes sin modificar toda la aplicacion.
+
+\section{Conclusiones}
+
+La arquitectura de software es el conjunto de decisiones que permite organizar un sistema de manera clara y coherente. No se limita a elegir un lenguaje de programacion o una base de datos; tambien define como se separan las responsabilidades, como se comunican los componentes, como se protege la informacion y como se prepara el sistema para cambios futuros.
+
+Su funcion principal es servir como una guia para construir, mantener y evolucionar el software. Una buena arquitectura reduce riesgos, mejora la comunicacion del equipo y permite responder a requisitos de calidad como seguridad, rendimiento, disponibilidad, usabilidad y escalabilidad.
+
+La elaboracion de una arquitectura requiere comprender las necesidades de los interesados, analizar requisitos funcionales y no funcionales, identificar restricciones, seleccionar patrones, definir componentes y documentar las vistas necesarias. Este proceso debe validarse y ajustarse durante el ciclo de vida del proyecto.
+
+En el Sistema de Gestion de Citas SAC, una arquitectura web por capas basada en MVC permite separar el frontend, la API, la logica de negocio, la persistencia y las integraciones externas. Los patrones Service Layer, Repository, Factory Method, Observer y DTO complementan esta estructura y favorecen un codigo mas mantenible, organizado y facil de probar.
+
+Finalmente, los elementos de diseno como componentes, interfaces, conectores, capas, modelos de dominio, reglas de negocio, infraestructura y vistas arquitectonicas permiten documentar de manera completa la solucion. Gracias a estos elementos, el proyecto puede desarrollarse con una base tecnica mas solida y con mejores posibilidades de evolucionar en el futuro.
+
+\end{document}
